@@ -3,7 +3,13 @@
 require 'function.php';
 
 // ambil data nya dari tabel mahasiswa
-$mahasiswa = query("SELECT * FROM mahasiswa");
+$mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC");
+
+//tombol cari pada saat di klik
+
+if(isset($_POST["cari"])){
+    $mahasiswa = cari($_POST["search"]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +23,12 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
     <h1>Daftar Mahasiswa</h1>
     <a href="tambah.php">Tambah Data Mahasiswa</a>
     <br><br>
+
+    <form action="" method="post">
+        <input type="text" name="search" size="50" autofocus placeholder="Cari Data" autocomplete="off">
+        <button type="submit" name="cari">Search</button>
+    </form>
+    <br>
     <table border = "1" cellpadding="10" cellspacing= "0">
         <tr>
             <th>id</th>

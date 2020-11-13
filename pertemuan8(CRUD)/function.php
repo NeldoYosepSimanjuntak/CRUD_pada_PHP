@@ -30,13 +30,14 @@ function tambah($data){
 
     return mysqli_affected_rows($conn);
 }
-
+// function hapus
 function hapus($id){
     global $conn;
     mysqli_query($conn, "DELETE FROM mahasiswa WHERE id = $id ");
     return mysqli_affected_rows($conn);
 }
 
+// function ubah
 function ubah($data){
     global $conn;
     $id = $data['id'];
@@ -58,6 +59,13 @@ function ubah($data){
     mysqli_query($conn, $db);
     return mysqli_affected_rows($conn);
 
+}
+
+// function cari
+
+function cari($search){
+    $query = "SELECT * FROM mahasiswa where nama LIKE '%$search%' OR nrp LIKE '%$search%'";
+    return query($query);
 }
 
 ?>
